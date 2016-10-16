@@ -16,7 +16,7 @@ public class MovieCursorAdapter extends CursorAdapter {
 	private static final String TAG = "MOVIE CURSOR ADAPTER";
 	RatingChangedListener ratingChangedListener;
 
-	//Correpond to column numbers in database
+	//Correspond to column numbers in database
 	private static final int ID_COL = 0;
 	private static final int MOVIE_COL = 1;
 	private static final int RATING_COL = 2;
@@ -46,15 +46,15 @@ public class MovieCursorAdapter extends CursorAdapter {
 
 		TextView nameTV = (TextView) view.findViewById(R.id.movie_title_list_text_view);
 		RatingBar ratingBar = (RatingBar) view.findViewById(R.id.movie_rating_list_rating_bar);
-//		TextView yearTV = (TextView) view.findViewById(R.id.add_movie_year);
-//		TextView reviewDateTV = (TextView) view.findViewById(R.id.add_review_date);
+		TextView yearTV = (TextView) view.findViewById(R.id.movie_year_released_text_view);
+		TextView reviewDateTV = (TextView) view.findViewById(R.id.review_date_text_view);
 
 		//Cursor is set to the correct database row, that corresponds to this row of the list.
 		//get data by reading the column needed
 		nameTV.setText(cursor.getString(MOVIE_COL));
 		ratingBar.setRating(cursor.getFloat(RATING_COL));
-//		yearTV.setText(cursor.getString(YEAR_COL));
-//		reviewDateTV.setText(cursor.getString(REVIEW_DATE_COL));
+		yearTV.setText(cursor.getString(YEAR_COL));
+		reviewDateTV.setText(cursor.getString(REVIEW_DATE_COL));
 
 
 		//need this to update data - good idea to use a primary key
@@ -73,14 +73,7 @@ public class MovieCursorAdapter extends CursorAdapter {
 				}
 			}
 		});
-		//TODO get references to components that will contain data from database
-
-		//TODO register listener for user changing RatingBar to change rating for this movie
-		//TODO If user changes rating, notify the RatingChangedListener
-
 	}
-
-
 	interface RatingChangedListener {
 		void notifyRatingChanged(int movieID, float newRating);
 	}
